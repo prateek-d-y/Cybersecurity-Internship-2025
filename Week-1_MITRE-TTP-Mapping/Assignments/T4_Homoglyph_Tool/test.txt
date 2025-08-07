@@ -1,0 +1,20 @@
+
+
+-----  test.txt  -----
+
+Please review the following links:
+
+Legit links:
+- https://google.com
+- www.github.com
+- https://www.microsoft.com
+
+Suspicious links (with homoglyphs):
+- https://gооgle.com         ← Uses Cyrillic 'о' instead of Latin 'o'
+- www.microsоft.com          ← Also uses Cyrillic 'о'
+- http://аррle.com           ← 'a', 'p', 'l', 'e' are Cyrillic
+- https://facebοοk.com       ← Uses Greek omicron 'ο' in place of Latin 'o'
+- https://twittеr.com        ← Uses Cyrillic 'е' instead of Latin 'e'
+- www.instаgram.com          ← Uses Cyrillic 'а' instead of Latin 'a'
+
+

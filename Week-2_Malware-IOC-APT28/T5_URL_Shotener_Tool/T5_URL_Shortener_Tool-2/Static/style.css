@@ -1,0 +1,62 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding-top: 50px;
+    background-image: url(https://images.unsplash.com/photo-1699100329878-7f28bb780787?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(87, 95, 93, 0.45);
+    padding: 40px;
+    display: inline-block;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(255, 251, 0, 0.849);
+    color: #fff;
+    backdrop-filter: blur(2px); /* Glassmorphism effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+input[type="url"], input[type="submit"] {
+    padding: 12px 15px;
+    margin: 12px 0;
+    width: 320px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="url"] {
+    background-color: #ffffffcc;
+    color: #333;
+}
+
+input[type="url"]::placeholder {
+    color: #666;
+}
+
+input[type="submit"] {
+    background-color: #0f121b;
+    color: white;
+    cursor: pointer;
+    width: 240px;
+}
+
+input[type="submit"]:hover {
+    background-color: #670202;
+    transform: scale(1.03);
+}

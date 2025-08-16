@@ -1,0 +1,61 @@
+from flask import Flask, request, redirect, render_template, url_for
+import sqlite3
+import string
+import random
+
+app = Flask(__name__)
+
+def init_db():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS urls (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    long_url TEXT NOT NULL,
+                    short_code TEXT UNIQUE NOT NULL
+                )''')
+    conn.commit()
+    conn.close()
+
+init_db()
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method == "POST":
+        long_url = request.form.get("long_url")
+        conn = sqlite3.connect('database.db')
+        c = conn.cursor()
+        c.execute("SELECT short_code FROM urls WHERE long_url = ?", (long_url,))
+        existing = c.fetchone()
+
+        if existing:
+            short_code = existing[0]
+        else:
+            short_code = generate_short_code()
+            c.execute("INSERT INTO urls (long_url, short_code) VALUES (?, ?)", (long_url, short_code))
+            conn.commit()
+        conn.close()
+
+        short_url = request.host_url + short_code
+        return render_template("index.html", short_url=short_url)
+
+    return render_template("index.html")
+
+
+@app.route("/<short_code>")
+def redirect_short_url(short_code):
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("SELECT long_url FROM urls WHERE short_code = ?", (short_code,))
+    result = c.fetchone()
+    conn.close()
+    if result:
+        return redirect(result[0])
+    else:
+        return "URL not found", 404
+
+def generate_short_code(length=6):
+    characters = string.ascii_letters + string.digits  # Base62 characters
+    return ''.join(random.choices(characters, k=length))
+
+if __name__ == "__main__":
+    app.run(debug=True)

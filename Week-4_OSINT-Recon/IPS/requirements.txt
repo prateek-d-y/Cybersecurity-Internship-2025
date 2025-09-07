@@ -1,0 +1,15 @@
+# GUI framework
+PyQt5>=5.15.10
+PyQtChart>=5.15.6   # Only needed if your IPS version still uses QChart, safe to include
+
+# Packet capture and analysis
+scapy>=2.5.0
+
+# Visualization
+matplotlib>=3.7.2
+
+# CSV/JSON are standard libraries (no need to install)
+
+# If running on Linux with live capture:
+# You may need system-level dependencies for libpcap, e.g.
+#   sudo apt install libpcap-dev
